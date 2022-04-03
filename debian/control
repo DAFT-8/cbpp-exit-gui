@@ -1,0 +1,14 @@
+Source: cbpp-exit-gui
+Section: misc
+Priority: extra
+Maintainer: Maintainer: Yurin Doctrine <dummy@example.org>
+Build-Depends: debhelper (>= 13)
+Standards-Version: 3.9.5
+Homepage: https://github.com/DAFT-8/cbpp-exit-gui
+
+Package: cbpp-exit-gui
+Architecture: all
+Depends: ${misc:Depends},
+         python3-gi
+Description: GUI exit
+ CrunchBangPlusPlus logout script.

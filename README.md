@@ -1,2 +1,12 @@
-# cbpp-exit-gui
-GUI exit
+# GUI
+
+It is currently a work in progress. Maintenance is done by <a href="https://www.github.com/DAFT-8/">DAFT-8</a> team.
+
+## Build the package
+
+* `sudo mk-build-deps -ir`
+* `gbp buildpackage --git-ignore-branch -us -uc`
+
+## Screenshots
+
+![cbpp-exit-gui](screenshot.png)
