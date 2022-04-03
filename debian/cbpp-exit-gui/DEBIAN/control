@@ -1,0 +1,11 @@
+Package: cbpp-exit-gui
+Version: 0.0.1
+Architecture: all
+Maintainer: Maintainer: Yurin Doctrine <dummy@example.org>
+Installed-Size: 14
+Depends: python3-gi
+Section: misc
+Priority: extra
+Homepage: https://github.com/DAFT-8/cbpp-exit-gui
+Description: GUI exit
+ CrunchBangPlusPlus logout script.
