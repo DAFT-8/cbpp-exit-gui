@@ -10,10 +10,10 @@ import os
 
 class ButtonWindow(Gtk.Window):
 	def __init__(self):
-		t = "Log out " + getpass.getuser() + "? Choose an option:"
+		t = "Exit session " + getpass.getuser() + "? Choose an option:"
 		Gtk.Window.__init__(self, title=t)
-		self.set_border_width(5)
-		self.set_size_request(500, 80)
+		self.set_border_width(2)
+		self.set_size_request(400, 55)
 		self.set_resizable(False)
 		self.set_keep_above(True)
 		self.stick
@@ -21,9 +21,9 @@ class ButtonWindow(Gtk.Window):
 		icon = Gtk.IconTheme.get_default().load_icon(Gtk.STOCK_QUIT, 64, 0)
 		self.set_icon(icon)
 
-		vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-		
-		hbox = Gtk.Box(spacing=6)
+		vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+
+		hbox = Gtk.Box(spacing=5)
 		vbox.pack_start(hbox, True, True, 0)
 
 		self.cbutton = Gtk.Button.new_with_mnemonic("_Cancel")
@@ -31,26 +31,26 @@ class ButtonWindow(Gtk.Window):
 		self.cbutton.connect("clicked", self.on_cancel_clicked)
 		hbox.pack_start(self.cbutton, True, True, 0)
 
-		self.lbutton = Gtk.Button.new_with_mnemonic("_Log out")
+		self.lbutton = Gtk.Button.new_with_mnemonic("_Logout")
 		self.lbutton.set_border_width(4)
 		self.lbutton.connect("clicked", self.on_logout_clicked)
 		hbox.pack_start(self.lbutton, True, True, 0)
-
-		self.sbutton = Gtk.Button.new_with_mnemonic("_Suspend")
-		self.sbutton.set_border_width(4)
-		self.sbutton.connect("clicked", self.on_suspend_clicked)
-		hbox.pack_start(self.sbutton, True, True, 0)
 
 		self.rbutton = Gtk.Button.new_with_mnemonic("_Reboot")
 		self.rbutton.set_border_width(4)
 		self.rbutton.connect("clicked", self.on_reboot_clicked)
 		hbox.pack_start(self.rbutton, True, True, 0)
 
-		self.pbutton = Gtk.Button.new_with_mnemonic("_Power off")
+		self.pbutton = Gtk.Button.new_with_mnemonic("_Shutdown")
 		self.pbutton.set_border_width(4)
 		self.pbutton.connect("clicked", self.on_shutdown_clicked)
 		hbox.pack_start(self.pbutton, True, True, 0)
-		
+
+		self.sbutton = Gtk.Button.new_with_mnemonic("_Suspend")
+		self.sbutton.set_border_width(4)
+		self.sbutton.connect("clicked", self.on_suspend_clicked)
+		hbox.pack_start(self.sbutton, True, True, 0)
+
 		self.label = Gtk.Label(label="")
 		vbox.pack_start(self.label, True, True, 0)
 		self.add(vbox)
@@ -71,13 +71,6 @@ class ButtonWindow(Gtk.Window):
 		self.label.set_text("Exiting Openbox, please standby...")
 		os.system("openbox --exit")
 
-	def on_suspend_clicked(self, button):
-		self.disable_buttons()
-		self.label.set_text("Suspending, please standby...")
-		os.system("xscreensaver-command -lock")
-		os.system("systemctl suspend")
-		Gtk.main_quit()
-
 	def on_reboot_clicked(self, button):
 		self.disable_buttons()
 		self.label.set_text("Rebooting, please standby...")
@@ -88,6 +81,11 @@ class ButtonWindow(Gtk.Window):
 		self.label.set_text("Shutting down, please standby...")
 		os.system("systemctl poweroff")
 
+	def on_suspend_clicked(self, button):
+		self.disable_buttons()
+		self.label.set_text("Suspending, please standby...")
+		os.system("systemctl suspend")
+		Gtk.main_quit()
 
 win = ButtonWindow()
 win.connect("destroy", Gtk.main_quit)
