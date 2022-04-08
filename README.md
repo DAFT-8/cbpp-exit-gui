@@ -6,6 +6,7 @@ It is currently a work in progress. Maintenance is done by <a href="https://www.
 
 **Install dependencies**
 
+* `cd cbpp-exit-gui/`
 * `sudo apt install devscripts git-buildpackage`
 * `sudo mk-build-deps -ir`
 * `gbp buildpackage --git-ignore-new -us -uc`
