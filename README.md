@@ -5,6 +5,7 @@ It is currently a work in progress. Maintenance is done by <a href="https://www.
 ## Build the package
 
 **Install dependencies**
+
 * `sudo apt install devscripts git-buildpackage`
 * `sudo mk-build-deps -ir`
 * `gbp buildpackage --git-ignore-new -us -uc`
